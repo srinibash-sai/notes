@@ -4,8 +4,6 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <meta name="keywords" content="Login">
@@ -320,7 +318,8 @@
 </head>
 
 <body>
-    <form autocomplete="off" action="{% static 'https://www.gietuerp.in/' %}" method="post" data-bitwarden-watching="1">
+    <form autocomplete="off" action="/" method="post" data-bitwarden-watching="1">
+        {% csrf_token %}
         <div class="login">
             <div class="login__header">
                 <img src="{% static 'logo.png' %}">
