@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <meta name="keywords" content="Login">
+    <meta name="description" content="Login">
+    <link rel="shortcut icon" href="https://www.gietuerp.in/#" type="image/x-icon">
+    <script src="{% static 'jquery-3.3.1.min.js.download' %}"></script>
+
+    <style>
+        /* Scss variable  Created By Bikash on 21-Jan-2019 */
+        /* GRADIENT LISTS
+============================================= */
+        @font-face {
+            font-family: "Font-Light";
+            src: url("../fonts/Helvetica.eot");
+            src: url("../fonts/Helvetica.eot?#iefix") format("embedded-opentype"), url("../fonts/Helvetica.woff") format("woff"), url("../fonts/Helvetica.ttf") format("truetype"), url("../fonts/Helvetica.svg#aller") format("svg");
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+        }
+
+        .text-danger {
+            color: red;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -ms-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        body {
+            font-size: 1rem;
+            margin: 0;
+            padding: 0;
+            color: #b2b2b2;
+            font-family: Font-Light;
+            background: #fff url("{% static 'sidebar.jpg' %}") no-repeat;
+        }
+
+        a {
+            transition: all 0.2s ease-in-out;
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            color: #b8bbb3;
+            text-decoration: none;
+        }
+
+        .login {
+            display: flex;
+            flex-wrap: wrap;
+            flex-flow: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s ease-in-out;
+            overflow: hidden;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ::-webkit-input-placeholder {
+            /* Edge */
+            color: #999999;
+        }
+
+        :-ms-input-placeholder {
+            /* Internet Explorer 10-11 */
+            color: #999999;
+        }
+
+        ::placeholder {
+            color: #999999;
+        }
+
+        .login {
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .login__header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .login__header img {
+            height: 260px;
+            margin-bottom: 1rem;
+        }
+
+        .login__header p {
+            color: #b2b2b2;
+        }
+
+        .login__content {
+            min-width: 300px;
+        }
+
+        .login__content h1 {
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            color: #108fbb;
+            margin-bottom: 1rem;
+        }
+
+        .login .log-link {
+            /*display: block;*/
+            text-align: center;
+            padding: 0.45rem 16px;
+            transition: all ease-in-out 0.5s;
+            color: #ffffff;
+            border-radius: 2px;
+            background: #108fbb;
+            border: 1px solid #108fbb;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            text-decoration: none;
+        }
+
+        .login .log-link:hover {
+            color: #000;
+            background: #fff;
+        }
+
+        .login .mt-1 {
+            margin-top: 0.5rem;
+        }
+
+        .login .mb-1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .login .mb-2 {
+            margin-bottom: 1rem;
+        }
+
+        .login .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .login .mb-4 {
+            margin-bottom: 2rem;
+        }
+
+        .login .text-right {
+            text-align: right;
+        }
+
+        .login .text-center {
+            text-align: center;
+        }
+
+        .login .form-group {
+            position: relative;
+        }
+
+        .login .usershowbtn {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+        }
+
+        .login .usershowbtn img {
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+            height: 20px;
+        }
+
+        .login .passwordshowbtn {
+            position: absolute;
+            right: 12px;
+            top: 12px;
+        }
+
+        .login .passwordshowbtn img {
+            -webkit-filter: grayscale(100%);
+            filter: grayscale(100%);
+            height: 20px;
+        }
+
+        .login .passwordshowbtn:hover img {
+            -webkit-filter: grayscale(0);
+            filter: grayscale(0);
+        }
+
+        .login .form-control {
+            display: block;
+            width: 100%;
+            height: calc(1.8em + .75rem + 2px);
+            padding: 0.45rem 0.75rem;
+            font-size: 1.05rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #515151;
+            background-color: #fff;
+            background-clip: padding-box;
+            transition: border-color 0.15s ease-in-out;
+            border: 1px solid #e1e1e1;
+            border-radius: 4px;
+        }
+
+        .login .form-control:focus {
+            box-shadow: none;
+            border-color: #108fbb;
+        }
+
+        .login .forgotpass {
+            color: #c0c0c0;
+        }
+
+        .login .forgotpass:hover {
+            color: #108fbb;
+        }
+
+        @media screen and (min-width: 575px) {
+            .login {
+                width: 400px;
+                height: auto;
+                min-height: 540px;
+                margin: 5% auto 0px;
+                box-shadow: 0px 1px 10px #bfbfbf;
+                border-radius: 4px;
+                background: #fff;
+            }
+        }
+
+        @media screen and (min-width: 768px) {
+            body {
+                height: 100vh;
+                overflow: hidden;
+                background: linear-gradient(#00000054, #0000004a), url("{% static 'backgroundImg.jpg' %}");
+                background-blend-mode: multiply;
+                background-size: cover;
+                /* animation: shrink 5s infinite alternate; */
+            }
+
+            /* @keyframes shrink {
+      0% {
+        background-size: 110% 110%;
+      }
+      100% {
+        background-size: 100% 100%;
+      }
+    } */
+
+            .login {
+                display: flex;
+                flex-flow: row;
+                width: 650px;
+                min-height: 200px;
+                justify-content: space-between;
+                align-items: center;
+                background: #fff url("{% static 'sidebar.jpg' %}") no-repeat;
+                background-size: 50%;
+                box-shadow: 2px 16px 18px -11px #353535;
+            }
+
+            .login__header {
+                padding: 2rem;
+                background: rgba(0, 0, 0, 0.6);
+                background-size: 100%;
+                min-height: 370px;
+                flex: 0 0 50%;
+                background-position: 0 0;
+                margin: 0;
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .login__header h1 {
+                color: #ffffff;
+            }
+
+            .login__header p {
+                color: #ffffff;
+            }
+
+            .login__content {
+                /*padding: 3rem 3rem 2rem 3rem;*/
+                padding: 0rem 2rem 0rem 2rem;
+                flex: 0 0 50%;
+                max-width: 100%;
+            }
+
+            .login__content h1 {
+                margin-bottom: 2rem;
+            }
+        }
+
+        /*# sourceMappingURL=login.css.map */
+    </style>
+</head>
+
+<body>
+    <form autocomplete="off" action="{% static 'https://www.gietuerp.in/' %}" method="post" data-bitwarden-watching="1">
+        <div class="login">
+            <div class="login__header">
+                <img src="{% static 'logo.png' %}">
+            </div>
+            <div class="login__content">
+                <h1 style="color: #00ced1">Login</h1>
+
+                <div class="form-group mb-3">
+                    <input class="form-control" id="textUser" placeholder="Username" autofocus="autofocus"
+                        maxlength="15" type="text" data-val="true" data-val-regex="Enter valid user name."
+                        data-val-regex-pattern="^[a-zA-Z0-9]{1,15}$" data-val-required="Please enter user name"
+                        name="vchUserName" value="">
+                    <span id="usernameError" class="text-danger field-validation-valid" data-valmsg-for="vchUserName"
+                        data-valmsg-replace="true"></span>
+                    <a class="usershowbtn">
+                        <img src="{% static 'user.png' %}">
+                    </a>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control password " id="textPassword" placeholder="Password"
+                        maxlength="20" data-val="true" data-val-regex="Enter valid password."
+                        data-val-regex-pattern="^[a-zA-Z0-9@#]{1,20}$" data-val-required="Please enter password"
+                        name="vchPassword">
+                    <span id="passwordError" class="text-danger field-validation-valid" data-valmsg-for="vchPassword"
+                        data-valmsg-replace="true"></span>
+                    <a class="passwordshowbtn">
+                        <img src="{% static 'hide.png' %}">
+                        <img src="{% static 'view.png' %}" alt="view" style="display:none">
+                    </a>
+                </div>
+                <div class="text-right mt-1 mb-4">
+                </div>
+                <div class="input-group">
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><img id="img-captcha" src="{% static 'get-captcha-image' %}"></td>
+                                <td> <input type="text" class="form-control" placeholder="Captcha Code" maxlength="4"
+                                        data-val="true"
+                                        data-val-length="The field CaptchaCode must be a string with a maximum length of 4."
+                                        data-val-length-max="4" data-val-required="The CaptchaCode field is required."
+                                        id="CaptchaCode" name="CaptchaCode" value=""></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <span class="text-danger field-validation-valid" data-valmsg-for="CaptchaCode"
+                        data-valmsg-replace="true"></span>
+                </div>
+                <br>
+
+                <div class="text-right">
+                    <button id="LoginButton" runat="server"
+                        style="background-color: #00ced1; color: white; font-weight: bold; border: 2px #808080 "
+                        class="log-link mb-3" text="SIGN IN" validationgroup="Login1">
+                        Login
+                    </button>
+                </div>
+                <!--<p class="text-center">Do not have an account ? <a class="" href="register.html">Sign Up</a></p>-->
+            </div>
+        </div>
+    </form>
+    <script src="{% static 'login.js.download' %}"></script>
+    <script src="{% static 'disableInspectElement.js.download' %}"></script>
+
+
+
+
+
+
+</body>
+
+</html>
