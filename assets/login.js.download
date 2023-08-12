@@ -1,0 +1,37 @@
+﻿
+
+        // view password btn
+    $('.passwordshowbtn').on('click', function () {
+
+        $(this).find('img').toggle();
+    var inputpass = $('.password').attr("type");
+
+    if (inputpass == "password") {
+        $('.password').attr("type", "text");
+            } else {
+        $('.password').attr("type", "password");
+            }
+        });
+    $(document).ready(function () {
+
+        //$("#LoginButtonZ").on("click", function () {
+        //    $('#usernameError,#passwordError').text("");
+        //    var $username = $("#textUser");
+        //    var $password = $("#textPassword");
+        //    if ($.trim($username.val()) == "") {
+        //        $username.focus();
+        //        $('#usernameError').text("Please enter your username.");
+        //        return false;
+        //    } else if ($.trim($password.val()) == "") {
+        //        $password.focus();
+        //        $('#passwordError').text("Please enter your password.");
+        //        return false;
+        //    }
+        //    else {
+        //        OnClick = "Login1_Authenticate";;
+        //    }
+        //})
+
+    })
+
+
